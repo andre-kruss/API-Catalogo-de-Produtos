@@ -2,56 +2,22 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
+mongoose.set('useFindAndModify', false);
+
 const Categoria = require('../esquemas/esquemaCategoria');
 
 // GET para /categorias
 router.get('/', (req, res) => {
-    Categoria.find({})
-        .exec()
-        .then(doc => {
-            console.log("Do banco de dados:", doc);
-            res.status(200).json(doc);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({error: err});
-        });
+    res.status(300).json({
+        message: "It works!"
+    });
 });
 
-// GET categorias por id-proprietario
-router.get('/CarregarPorIdProprietario/:id_proprietario', (req, res) => {
-    const id_proprietario = req.params.id_proprietario;
-    Categoria.findOne({id_proprietario: id_proprietario})
-        .exec()
-        .then(doc => {
-            console.log("Do banco de dados:", doc);
-            res.status(200).json(doc);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({error: err});
-        });
-});
-
-// GET categorias por id categoria
-router.get('/CarregarPorIdCategoria/:id', (req, res) => {
+// GET categorias 
+router.get('/carregar/:idProprietario/:id', (req, res) => {
+    const idProprietario = req.params.idProprietario;
     const id = req.params.id;
-    Categoria.findOne({_id: id})
-        .exec()
-        .then(doc => {
-            console.log("Do banco de dados:", doc);
-            res.status(200).json(doc);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({error: err});
-        });
-});
-
-// GET categorias por nome
-router.get('/CarregarPorNome/:nome', (req, res) => {
-    const nome = req.params.nome;
-    Categoria.findOne({nome: nome})
+    Categoria.findOne({idProprietario: idProprietario, id: id})
         .exec()
         .then(doc => {
             console.log("Do banco de dados:", doc);
@@ -64,9 +30,9 @@ router.get('/CarregarPorNome/:nome', (req, res) => {
 });
 
 // (LISTAGEM) GET por id-proprietario
-router.get('/ListarPorIdProprietario/:id_proprietario', (req, res) => {
-    const id_proprietario = req.params.id_proprietario;
-    Categoria.find({id_proprietario: id_proprietario})
+router.get('/listar/:idProprietario', (req, res) => {
+    const idProprietario = req.params.idProprietario;
+    Categoria.find({idProprietario: idProprietario})
         .exec()
         .then(doc => {
             console.log("Do banco de dados:", doc);
@@ -79,10 +45,10 @@ router.get('/ListarPorIdProprietario/:id_proprietario', (req, res) => {
 });
 
 // POST para /categorias/AdicionarCategoria
-router.post('/AdicionarCategoria', (req, res) => {
+router.post('/adicionar', (req, res) => {
    const categoria = new Categoria({
-        _id: new mongoose.Types.ObjectId(),
-        id_proprietario: req.body.id_proprietario,
+        id: req.body.id,
+        idProprietario: req.body.idProprietario,
         nome: req.body.nome
     });
 
@@ -99,12 +65,12 @@ router.post('/AdicionarCategoria', (req, res) => {
 });
 
 // DELETE por id proprietario e id categoria
-router.delete('/deletar/:id_proprietario/:id', (req, res) => {
-    const id_proprietario = req.params.id_proprietario;
+router.delete('/deletar/:idProprietario/:id', (req, res) => {
+    const idProprietario = req.params.idProprietario;
     const id = req.params.id;
     Categoria.deleteOne(
         {
-            id_proprietario: id_proprietario,
+            idProprietario: idProprietario,
             id: id
         }
     )
@@ -120,13 +86,13 @@ router.delete('/deletar/:id_proprietario/:id', (req, res) => {
 });
 
 // PUT por id_proprietario e id categoria
-router.put('/alterar/:id_proprietario/:id', (req, res) => {
-    const id_proprietario = req.params.id_proprietario;
+router.put('/alterar/:idProprietario/:id', (req, res) => {
+    const idProprietario = req.params.idProprietario;
     const id = req.params.id; 
     const nome = req.body.nome;
     Categoria.findOneAndUpdate(
         {
-            id_proprietario: id_proprietario, 
+            idProprietario: idProprietario, 
             id: id
         },
         {

@@ -5,53 +5,17 @@ const mongoose = require('mongoose');
 const Produto = require('../esquemas/esquemaProduto');
 
 // get para /produtos
-router.get('/', (req, res) => {
-    Produto.find({})
-        .exec()
-        .then(doc => {
-            console.log("Do banco de dados:", doc);
-            res.status(200).json(doc);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({error: err});
-        });
+router.get('/', async (req, res) => {
+    res.status(300).json({
+        message: "It works!"
+    });
 });
 
 // GET produtos por id-proprietario
-router.get('/CarregarPorIdProprietario/:id_proprietario', (req, res) => {
-    const id_proprietario = req.params.id_proprietario;
-    Produto.findOne({id_proprietario: id_proprietario})
-        .exec()
-        .then(doc => {
-            console.log("Do banco de dados:", doc);
-            res.status(200).json(doc);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({error: err});
-        });
-});
-
-// GET categorias por id produto
-router.get('/CarregarPorIdProduto/:id', (req, res) => {
+router.get('/carregar/:idProprietario/:id', (req, res) => {
+    const idProprietario = req.params.idProprietario;
     const id = req.params.id;
-    Produto.findOne({_id: id})
-        .exec()
-        .then(doc => {
-            console.log("Do banco de dados:", doc);
-            res.status(200).json(doc);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({error: err});
-        });
-});
-
-// GET categorias por nome
-router.get('/CarregarPorNome/:nome', (req, res) => {
-    const nome = req.params.nome;
-    Produto.findOne({nome: nome})
+    Produto.findOne({idProprietario: idProprietario, id: id})
         .exec()
         .then(doc => {
             console.log("Do banco de dados:", doc);
@@ -64,9 +28,9 @@ router.get('/CarregarPorNome/:nome', (req, res) => {
 });
 
 // (LISTAGEM) GET por id-proprietario
-router.get('/ListarPorIdProprietario/:id_proprietario', (req, res) => {
-    const id_proprietario = req.params.id_proprietario;
-    Produto.find({id_proprietario: id_proprietario})
+router.get('/listar/:idProprietario', (req, res) => {
+    const idProprietario = req.params.idProprietario;
+    Produto.find({idProprietario: idProprietario})
         .exec()
         .then(doc => {
             console.log("Do banco de dados:", doc);
@@ -78,35 +42,19 @@ router.get('/ListarPorIdProprietario/:id_proprietario', (req, res) => {
         });
 });
 
-// (LISTAGEM) GET por categoria
-router.get('/ListarPorCategoria/:id_proprietario/:id', (req, res) => {
-    const id_proprietario = req.params.id_proprietario;
-    const id = req.params.id;
-    Produto.find({id_proprietario: id_proprietario, categorias: {id: id}})
-        .exec()
-        .then(doc => {
-            console.log("Do banco de dados:", doc);
-            res.status(200).json(doc);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({error: err});
-        });
-});
-
-// POST para /produtos/AdicionarProduto
-router.post('/AdicionarProduto', (req, res) => {
+// POST para /produtos/adicionar
+router.post('/adicionar', (req, res) => {
    const produto = new Produto({
-        _id: new mongoose.Types.ObjectId(),
-        id_proprietario: req.body.id_proprietario,
-        categorias: req.body.categorias,
+        id: req.body.id,
+        idProprietario: req.body.idProprietario,
         nome: req.body.nome,
-        descricao: req.body.categorias,
+        descricao: req.body.descricao,
         valor1: req.body.valor1,
         valor2: req.body.valor2,
         valor3: req.body.valor3,
         ativo: req.body.ativo,
-        paineis_modificacao: req.body.paineis_modificacao,
+        categorias: req.body.categorias,
+        paineisModificacao: req.body.paineisModificacao
     });
 
     produto
@@ -122,12 +70,12 @@ router.post('/AdicionarProduto', (req, res) => {
 });
 
 // DELETE por id proprietario e id produto
-router.delete('/deletar/:id_proprietario/:id', (req, res) => {
-    const id_proprietario = req.params.id_proprietario;
+router.delete('/deletar/:idProprietario/:id', (req, res) => {
+    const idProprietario = req.params.idProprietario;
     const id = req.params.id;
     Produto.deleteOne(
         {
-            id_proprietario: id_proprietario,
+            idProprietario: idProprietario,
             id: id
         }
     )
@@ -143,13 +91,13 @@ router.delete('/deletar/:id_proprietario/:id', (req, res) => {
 });
 
 // PUT por id_proprietario e id produto
-router.put('/alterar/:id_proprietario/:id', (req, res) => {
-    const id_proprietario = req.params.id_proprietario;
+router.put('/alterar/:idProprietario/:id', (req, res) => {
+    const idProprietario = req.params.idProprietario;
     const id = req.params.id; 
     const nome = req.body.nome;
     Produto.findOneAndUpdate(
         {
-            id_proprietario: id_proprietario, 
+            idProprietario: idProprietario, 
             id: id
         },
         {
