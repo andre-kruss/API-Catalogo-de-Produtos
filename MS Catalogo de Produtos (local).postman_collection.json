@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "fc233f27-e728-4de5-882f-1c04c3951fac",
+		"_postman_id": "19f6760a-555c-4542-8caf-9cf01341b470",
 		"name": "MS Catalogo de Produtos (local)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,7 +9,7 @@
 			"name": "Categorias",
 			"item": [
 				{
-					"name": "Listar Categorias",
+					"name": "Categorias",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -27,19 +27,40 @@
 					"response": []
 				},
 				{
-					"name": "Carregar por id_proprietario",
+					"name": "Carregar",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3333/categorias/CarregarPorIdProprietario/1",
+							"raw": "localhost:3333/categorias/carregar/1/2",
 							"host": [
 								"localhost"
 							],
 							"port": "3333",
 							"path": [
 								"categorias",
-								"CarregarPorIdProprietario",
+								"carregar",
+								"1",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/categorias/listar/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"categorias",
+								"listar",
 								"1"
 							]
 						}
@@ -47,67 +68,7 @@
 					"response": []
 				},
 				{
-					"name": "Carregar por id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3333/categorias/CarregarPorIdCategoria/3",
-							"host": [
-								"localhost"
-							],
-							"port": "3333",
-							"path": [
-								"categorias",
-								"CarregarPorIdCategoria",
-								"3"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Carregar por nome",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3333/categorias/CarregarPorNome/bebidas",
-							"host": [
-								"localhost"
-							],
-							"port": "3333",
-							"path": [
-								"categorias",
-								"CarregarPorNome",
-								"bebidas"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Listar por id_proprietario",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3333/categorias/ListarPorIdProprietario/1",
-							"host": [
-								"localhost"
-							],
-							"port": "3333",
-							"path": [
-								"categorias",
-								"ListarPorIdProprietario",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Criar Categoria",
+					"name": "Criar",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -119,29 +80,33 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id_proprietario\": 1,\r\n    \"nome\": \"teste\"\r\n}"
+							"raw": "{\r\n    \"id\": \"2\",\r\n    \"idProprietario\": \"1\",\r\n    \"nome\": \"nome_alterado\"\r\n}"
 						},
 						"url": {
-							"raw": "localhost:3333/categorias/AdicionarCategoria",
+							"raw": "localhost:3333/categorias/adicionar",
 							"host": [
 								"localhost"
 							],
 							"port": "3333",
 							"path": [
 								"categorias",
-								"AdicionarCategoria"
+								"adicionar"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Deletar Categoria",
+					"name": "Deletar",
 					"request": {
 						"method": "DELETE",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "localhost:3333/categorias/deletar/4/5",
+							"raw": "localhost:3333/categorias/deletar/1/3",
 							"host": [
 								"localhost"
 							],
@@ -149,15 +114,15 @@
 							"path": [
 								"categorias",
 								"deletar",
-								"4",
-								"5"
+								"1",
+								"3"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Alterar Categoria",
+					"name": "Alterar",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -169,10 +134,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"nome_via_API\"\r\n}"
+							"raw": "{\r\n    \"nome\": \"nome_alterado\"\r\n}"
 						},
 						"url": {
-							"raw": "localhost:3333/categorias/alterar/2/2",
+							"raw": "localhost:3333/categorias/alterar/1/1",
 							"host": [
 								"localhost"
 							],
@@ -180,8 +145,8 @@
 							"path": [
 								"categorias",
 								"alterar",
-								"2",
-								"2"
+								"1",
+								"1"
 							]
 						}
 					},
@@ -193,7 +158,7 @@
 			"name": "Produtos",
 			"item": [
 				{
-					"name": "Listar Produtos",
+					"name": "Produtos",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -211,108 +176,48 @@
 					"response": []
 				},
 				{
-					"name": "Carregar por id_proprietario",
+					"name": "Carregar",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3333/produtos/CarregarPorIdProprietario/1",
+							"raw": "localhost:3333/produtos/carregar/1/1",
 							"host": [
 								"localhost"
 							],
 							"port": "3333",
 							"path": [
 								"produtos",
-								"CarregarPorIdProprietario",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Carregar por id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3333/produtos/CarregarPorIdProduto/1",
-							"host": [
-								"localhost"
-							],
-							"port": "3333",
-							"path": [
-								"produtos",
-								"CarregarPorIdProduto",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Carregar por nome",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3333/produtos/CarregarPorNome/CocaCola",
-							"host": [
-								"localhost"
-							],
-							"port": "3333",
-							"path": [
-								"produtos",
-								"CarregarPorNome",
-								"CocaCola"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Listar por id_proprietario",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3333/produtos/ListarPorIdProprietario/1",
-							"host": [
-								"localhost"
-							],
-							"port": "3333",
-							"path": [
-								"produtos",
-								"ListarPorIdProprietario",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Listar por categorias",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3333/produtos/ListarPorCategoria/1/3",
-							"host": [
-								"localhost"
-							],
-							"port": "3333",
-							"path": [
-								"produtos",
-								"ListarPorCategoria",
+								"carregar",
 								"1",
-								"3"
+								"1"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Criar Produto",
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/produtos/listar/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"produtos",
+								"listar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -324,24 +229,24 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id_proprietario\": \"1\",\r\n    \"categorias\": \"604f83a7872c9b0200707a33\",\r\n    \"nome\": \"Fanta\",\r\n    \"descricao\": \"refrigerante\",\r\n    \"valor1\": 5.00,\r\n    \"valor2\": 0,\r\n    \"valor3\": 0,\r\n    \"ativo\": true,\r\n    \"paineis_modificacao\": [\r\n        {\r\n            \"id\": \"1\",\r\n            \"nome\": \"Adicional\",\r\n            \"min\": 0,\r\n            \"max\": 0,\r\n            \"modificacoes\": [\r\n                {\r\n                    \"id\": \"1\",\r\n                    \"nome\": \"ComGelo\",\r\n                    \"valor\": \"0\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}"
+							"raw": "{\r\n    \"id\": \"2\",\r\n    \"idProprietario\": \"1\",\r\n    \"nome\": \"XTudo\",\r\n    \"descricao\": \"lanche\",\r\n    \"valor1\": 5.00,\r\n    \"valor2\": 0,\r\n    \"valor3\": 0,\r\n    \"ativo\": true,\r\n    \"categorias\": [\r\n        {\r\n            \"id\": \"2\"\r\n        }\r\n    ],\r\n    \"paineisModificacao\": [\r\n        {\r\n            \"id\": \"1\",\r\n            \"nome\": \"Adicional\",\r\n            \"min\": 0,\r\n            \"max\": 0,\r\n            \"modificacoes\": [\r\n                {\r\n                    \"id\": \"1\",\r\n                    \"nome\": \"ComGelo\",\r\n                    \"valor\": \"0\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}"
 						},
 						"url": {
-							"raw": "localhost:3333/produtos/AdicionarProduto",
+							"raw": "localhost:3333/produtos/adicionar",
 							"host": [
 								"localhost"
 							],
 							"port": "3333",
 							"path": [
 								"produtos",
-								"AdicionarProduto"
+								"adicionar"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Deletar Produto",
+					"name": "Deletar",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -362,7 +267,7 @@
 					"response": []
 				},
 				{
-					"name": "Alterar Produto",
+					"name": "Alterar",
 					"request": {
 						"method": "PUT",
 						"header": [
