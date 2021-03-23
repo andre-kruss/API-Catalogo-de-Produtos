@@ -17,13 +17,11 @@ const EsquemaProduto = new mongoose.Schema({
   ],
   paineisModificacao: [
       {
-        id: String,
         nome: String,
         min: Number,
         max: Number,
         modificacoes: [
             {
-              id: String,
               nome: String,
               valor: Number
             }

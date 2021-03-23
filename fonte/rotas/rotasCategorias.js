@@ -56,12 +56,12 @@ router.post('/adicionar', (req, res) => {
         .save()
         .then(result => {
             console.log(result);
+            res.status(201).json(doc);
         })
-        .catch(err => console.log(err));
-
-    res.status(200).json({
-        message: 'Categoria criada'
-    });
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({error: err});
+        });  
 });
 
 // DELETE por id proprietario e id categoria
