@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const Produto = require('../esquemas/esquemaProduto');
 
 // get para /produtos
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
     res.status(300).json({
         message: "It works!"
     });
@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 router.get('/carregar/:idProprietario/:id', (req, res) => {
     const idProprietario = req.params.idProprietario;
     const id = req.params.id;
-    Produto.findOne({idProprietario: idProprietario, id: id})
+    Produto.findOne({idProprietario: idProprietario, _id: id})
         .exec()
         .then(doc => {
             console.log("Do banco de dados:", doc);
@@ -45,7 +45,7 @@ router.get('/listar/:idProprietario', (req, res) => {
 // POST para /produtos/adicionar
 router.post('/adicionar', (req, res) => {
    const produto = new Produto({
-        id: req.body.id,
+        _id: mongoose.Types.ObjectId(),
         idProprietario: req.body.idProprietario,
         nome: req.body.nome,
         descricao: req.body.descricao,
@@ -61,12 +61,14 @@ router.post('/adicionar', (req, res) => {
         .save()
         .then(result => {
             console.log(result);
+            res.status(201).json(result);
         })
-        .catch(err => console.log(err));
-
-    res.status(200).json({
-        message: 'Produto criado'
-    });
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            })
+        });
 });
 
 // DELETE por id proprietario e id produto
@@ -76,7 +78,7 @@ router.delete('/deletar/:idProprietario/:id', (req, res) => {
     Produto.deleteOne(
         {
             idProprietario: idProprietario,
-            id: id
+            _id: id
         }
     )
     .exec()
@@ -90,23 +92,17 @@ router.delete('/deletar/:idProprietario/:id', (req, res) => {
         });
 });
 
-// PUT por id_proprietario e id produto
-router.put('/alterar/:idProprietario/:id', (req, res) => {
+// UPDATE por id_proprietario e id produto
+router.patch('/alterar/:idProprietario/:id', (req, res) => {
     const idProprietario = req.params.idProprietario;
     const id = req.params.id; 
-    const nome = req.body.nome;
-    Produto.findOneAndUpdate(
-        {
-            idProprietario: idProprietario, 
-            id: id
-        },
-        {
-            nome: nome
-        },
-        {
-            new: true
-        }
-    )
+    const alteracoes = {};
+
+    for(const [chave, valor] of Object.entries(req.body)){
+        alteracoes[chave] = valor;
+    }
+
+    Produto.update({idProprietario: idProprietario, _id: id}, { $set: alteracoes})
     .exec()
         .then(doc => {
             console.log("Do banco de dados:", doc);

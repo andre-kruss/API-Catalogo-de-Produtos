@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 router.get('/carregar/:idProprietario/:id', (req, res) => {
     const idProprietario = req.params.idProprietario;
     const id = req.params.id;
-    Categoria.findOne({idProprietario: idProprietario, id: id})
+    Categoria.findOne({idProprietario: idProprietario, _id: id})
         .exec()
         .then(doc => {
             console.log("Do banco de dados:", doc);
@@ -47,7 +47,7 @@ router.get('/listar/:idProprietario', (req, res) => {
 // POST para /categorias/AdicionarCategoria
 router.post('/adicionar', (req, res) => {
    const categoria = new Categoria({
-        id: req.body.id,
+        _id: mongoose.Types.ObjectId(),
         idProprietario: req.body.idProprietario,
         nome: req.body.nome
     });
@@ -71,7 +71,7 @@ router.delete('/deletar/:idProprietario/:id', (req, res) => {
     Categoria.deleteOne(
         {
             idProprietario: idProprietario,
-            id: id
+            _id: id
         }
     )
     .exec()
@@ -85,23 +85,12 @@ router.delete('/deletar/:idProprietario/:id', (req, res) => {
         });
 });
 
-// PUT por id_proprietario e id categoria
-router.put('/alterar/:idProprietario/:id', (req, res) => {
+// PATCH por id_proprietario e id categoria
+router.patch('/alterar/:idProprietario/:id', (req, res) => {
     const idProprietario = req.params.idProprietario;
     const id = req.params.id; 
     const nome = req.body.nome;
-    Categoria.findOneAndUpdate(
-        {
-            idProprietario: idProprietario, 
-            id: id
-        },
-        {
-            nome: nome
-        },
-        {
-            new: true
-        }
-    )
+    Categoria.update({idProprietario: idProprietario, _id: id}, { $set: {nome: nome}})
     .exec()
         .then(doc => {
             console.log("Do banco de dados:", doc);

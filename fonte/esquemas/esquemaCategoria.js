@@ -1,7 +1,7 @@
 mongoose = require('mongoose')
 
 const EsquemaCategoria = new mongoose.Schema({
-    id: String,
+    _id: mongoose.Schema.Types.ObjectID,
     idProprietario: String,
     nome: String
 });

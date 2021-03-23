@@ -1,7 +1,7 @@
 mongoose = require('mongoose')
 
 const EsquemaProduto = new mongoose.Schema({
-  id: String,
+  _id: mongoose.Schema.Types.ObjectID,
   idProprietario: String,
   nome: String,
   descricao: String,
@@ -11,7 +11,8 @@ const EsquemaProduto = new mongoose.Schema({
   ativo: Boolean,
   categorias: [
     {
-      id: String
+      type: mongoose.Schema.Types.ObjectID,
+      ref: 'Categoria'
     }
   ],
   paineisModificacao: [
