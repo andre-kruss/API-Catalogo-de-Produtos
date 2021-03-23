@@ -80,7 +80,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idProprietario\": \"1\",\r\n    \"nome\": \"Pizza\"\r\n}"
+							"raw": "{\r\n    \"idProprietario\": \"1\",\r\n    \"nome\": \"Bebidas\"\r\n}"
 						},
 						"url": {
 							"raw": "localhost:3333/categorias/adicionar",
@@ -106,7 +106,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:3333/categorias/deletar/1/6058f6ce7af0071b5c697c14",
+							"raw": "localhost:3333/categorias/deletar/1/6059e863a519021ae01aaf41",
 							"host": [
 								"localhost"
 							],
@@ -115,7 +115,7 @@
 								"categorias",
 								"deletar",
 								"1",
-								"6058f6ce7af0071b5c697c14"
+								"6059e863a519021ae01aaf41"
 							]
 						}
 					},
@@ -134,10 +134,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Pizza\"\r\n}"
+							"raw": "{\r\n    \"nome\": \"Pizza_alterado\"\r\n}"
 						},
 						"url": {
-							"raw": "localhost:3333/categorias/alterar/1/6058ce68a4dcd51460fa7f3a",
+							"raw": "localhost:3333/categorias/alterar/1/6059e863a519021ae01aaf41",
 							"host": [
 								"localhost"
 							],
@@ -146,7 +146,7 @@
 								"categorias",
 								"alterar",
 								"1",
-								"6058ce68a4dcd51460fa7f3a"
+								"6059e863a519021ae01aaf41"
 							]
 						}
 					},
