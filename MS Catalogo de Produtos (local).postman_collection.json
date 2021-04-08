@@ -14,11 +14,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3333/categorias",
+							"raw": "{{API_CatalogoProdutos}}/categorias",
 							"host": [
-								"localhost"
+								"{{API_CatalogoProdutos}}"
 							],
-							"port": "3333",
 							"path": [
 								"categorias"
 							]
@@ -32,11 +31,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3333/categorias/carregar/1/6058ce44a4dcd51460fa7f38",
+							"raw": "{{API_CatalogoProdutos}}/categorias/carregar/1/6058ce44a4dcd51460fa7f38",
 							"host": [
-								"localhost"
+								"{{API_CatalogoProdutos}}"
 							],
-							"port": "3333",
 							"path": [
 								"categorias",
 								"carregar",
@@ -53,11 +51,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3333/categorias/listar/1",
+							"raw": "{{API_CatalogoProdutos}}/categorias/listar/1",
 							"host": [
-								"localhost"
+								"{{API_CatalogoProdutos}}"
 							],
-							"port": "3333",
 							"path": [
 								"categorias",
 								"listar",
@@ -83,11 +80,10 @@
 							"raw": "{\r\n    \"idProprietario\": \"1\",\r\n    \"nome\": \"Bebidas\"\r\n}"
 						},
 						"url": {
-							"raw": "localhost:3333/categorias/adicionar",
+							"raw": "{{API_CatalogoProdutos}}/categorias/adicionar",
 							"host": [
-								"localhost"
+								"{{API_CatalogoProdutos}}"
 							],
-							"port": "3333",
 							"path": [
 								"categorias",
 								"adicionar"
@@ -106,11 +102,10 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:3333/categorias/deletar/1/6059e863a519021ae01aaf41",
+							"raw": "{{API_CatalogoProdutos}}/categorias/deletar/1/6059e863a519021ae01aaf41",
 							"host": [
-								"localhost"
+								"{{API_CatalogoProdutos}}"
 							],
-							"port": "3333",
 							"path": [
 								"categorias",
 								"deletar",
@@ -137,11 +132,10 @@
 							"raw": "{\r\n    \"nome\": \"Pizza_alterado\"\r\n}"
 						},
 						"url": {
-							"raw": "localhost:3333/categorias/alterar/1/6059e863a519021ae01aaf41",
+							"raw": "{{API_CatalogoProdutos}}/categorias/alterar/1/6059e863a519021ae01aaf41",
 							"host": [
-								"localhost"
+								"{{API_CatalogoProdutos}}"
 							],
-							"port": "3333",
 							"path": [
 								"categorias",
 								"alterar",
@@ -163,11 +157,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3333/produtos",
+							"raw": "{{API_CatalogoProdutos}}/produtos",
 							"host": [
-								"localhost"
+								"{{API_CatalogoProdutos}}"
 							],
-							"port": "3333",
 							"path": [
 								"produtos"
 							]
@@ -181,16 +174,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3333/produtos/carregar/1/1",
+							"raw": "{{API_CatalogoProdutos}}/produtos/carregar/1/6059dea21e45751bb436b715",
 							"host": [
-								"localhost"
+								"{{API_CatalogoProdutos}}"
 							],
-							"port": "3333",
 							"path": [
 								"produtos",
 								"carregar",
 								"1",
-								"1"
+								"6059dea21e45751bb436b715"
 							]
 						}
 					},
@@ -202,11 +194,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3333/produtos/listar/1",
+							"raw": "{{API_CatalogoProdutos}}/produtos/listar/1",
 							"host": [
-								"localhost"
+								"{{API_CatalogoProdutos}}"
 							],
-							"port": "3333",
 							"path": [
 								"produtos",
 								"listar",
@@ -229,14 +220,13 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idProprietario\": \"1\",\r\n    \"nome\": \"Batata frita\",\r\n    \"descricao\": \"porção\",\r\n    \"valor1\": 7.0,\r\n    \"valor2\": 0,\r\n    \"valor3\": 0,\r\n    \"ativo\": true,\r\n    \"categorias\": [\r\n        {\r\n            \"_id\": \"6058ce44a4dcd51460fa7f38\"\r\n        }\r\n    ],\r\n    \"paineisModificacao\": [\r\n        {\r\n            \"nome\": \"Extras\",\r\n            \"min\": 0,\r\n            \"max\": 1,\r\n            \"modificacoes\": [\r\n                {\r\n                    \"nome\": \"Cheddar\",\r\n                    \"valor\": 2.0\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}"
+							"raw": "{\r\n    \"idProprietario\": \"1\",\r\n    \"nome\": \"XBacon\",\r\n    \"descricao\": \"lanche\",\r\n    \"valor1\": 15.0,\r\n    \"valor2\": 0,\r\n    \"valor3\": 0,\r\n    \"ativo\": true,\r\n    \"categorias\": [\r\n        {\r\n            \"_id\": \"6058ce5da4dcd51460fa7f39\"\r\n        }\r\n    ],\r\n    \"paineisModificacao\": [\r\n        {\r\n            \"nome\": \"Extras\",\r\n            \"min\": 0,\r\n            \"max\": 1,\r\n            \"modificacoes\": [\r\n                {\r\n                    \"nome\": \"Bacon\",\r\n                    \"valor\": 2.0\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}"
 						},
 						"url": {
-							"raw": "localhost:3333/produtos/adicionar",
+							"raw": "{{API_CatalogoProdutos}}/produtos/adicionar",
 							"host": [
-								"localhost"
+								"{{API_CatalogoProdutos}}"
 							],
-							"port": "3333",
 							"path": [
 								"produtos",
 								"adicionar"
@@ -251,16 +241,15 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:3333/produtos/deletar/1/1",
+							"raw": "{{API_CatalogoProdutos}}/produtos/deletar/1/6059e9dba519021ae01aaf45",
 							"host": [
-								"localhost"
+								"{{API_CatalogoProdutos}}"
 							],
-							"port": "3333",
 							"path": [
 								"produtos",
 								"deletar",
 								"1",
-								"1"
+								"6059e9dba519021ae01aaf45"
 							]
 						}
 					},
@@ -279,25 +268,30 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Batata frita\",\r\n    \"valor1\": 9.00,\r\n    \"valor2\": 9.00,\r\n    \"valor3\": 9.00,\r\n    \"ativo\": true\r\n}"
+							"raw": "{\r\n    \"nome\": \"XSalada\",\r\n    \"valor1\": 14.00,\r\n    \"valor2\": 14.00,\r\n    \"valor3\": 14.00,\r\n    \"ativo\": false\r\n}"
 						},
 						"url": {
-							"raw": "localhost:3333/produtos/alterar/1/6058f0aa1cd12a25e406893d",
+							"raw": "{{API_CatalogoProdutos}}/produtos/alterar/1/6059e94aa519021ae01aaf42",
 							"host": [
-								"localhost"
+								"{{API_CatalogoProdutos}}"
 							],
-							"port": "3333",
 							"path": [
 								"produtos",
 								"alterar",
 								"1",
-								"6058f0aa1cd12a25e406893d"
+								"6059e94aa519021ae01aaf42"
 							]
 						}
 					},
 					"response": []
 				}
 			]
+		}
+	],
+	"variable": [
+		{
+			"key": "API_CatalogoProdutos",
+			"value": "localhost:3333"
 		}
 	]
 }

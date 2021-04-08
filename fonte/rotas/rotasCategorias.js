@@ -46,7 +46,8 @@ router.get('/listar/:idProprietario', (req, res) => {
 
 // POST para /categorias/AdicionarCategoria
 router.post('/adicionar', (req, res) => {
-   const categoria = new Categoria({
+
+    const categoria = new Categoria({
         _id: mongoose.Types.ObjectId(),
         idProprietario: req.body.idProprietario,
         nome: req.body.nome
