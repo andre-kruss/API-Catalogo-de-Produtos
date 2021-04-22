@@ -13,6 +13,22 @@ router.get('/', (req, res) => {
     });
 });
 
+// GET categoria por idProprietario e nome
+router.get('/carregarPorNome/:idProprietario/:nome', (req, res) => {
+    const idProprietario = req.params.idProprietario;
+    const nome = req.params.nome;
+    Categoria.findOne({idProprietario: idProprietario, nome: nome})
+        .exec()
+        .then(doc => {
+            console.log("Do banco de dados:", doc);
+            res.status(200).json(doc);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({error: err});
+        });
+});
+
 // GET categorias 
 router.get('/carregar/:idProprietario/:id', (req, res) => {
     const idProprietario = req.params.idProprietario;
@@ -46,7 +62,6 @@ router.get('/listar/:idProprietario', (req, res) => {
 
 // POST para /categorias/AdicionarCategoria
 router.post('/adicionar', (req, res) => {
-
     const categoria = new Categoria({
         _id: mongoose.Types.ObjectId(),
         idProprietario: req.body.idProprietario,

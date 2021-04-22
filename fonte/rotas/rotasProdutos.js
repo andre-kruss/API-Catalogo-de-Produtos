@@ -11,6 +11,22 @@ router.get('/', (req, res) => {
     });
 });
 
+// GET produtos por id-proprietario e nome
+router.get('/carregarPorNome/:idProprietario/:nome', (req, res) => {
+    const idProprietario = req.params.idProprietario;
+    const nome = req.params.nome;
+    Produto.findOne({idProprietario: idProprietario, nome: nome})
+        .exec()
+        .then(doc => {
+            console.log("Do banco de dados:", doc);
+            res.status(200).json(doc);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({error: err});
+        });
+});
+
 // GET produtos por id-proprietario
 router.get('/carregar/:idProprietario/:id', (req, res) => {
     const idProprietario = req.params.idProprietario;
@@ -91,6 +107,67 @@ router.delete('/deletar/:idProprietario/:id', (req, res) => {
             res.status(500).json({error: err});
         });
 });
+
+router.patch('/adicionarPainel/:idProprietario/:nome', (req, res) => {
+    const idProprietario = req.params.idProprietario;
+    const nome = req.params.nome; 
+    const painel = req.body;
+
+    Produto.updateOne(
+        {idProprietario: idProprietario, nome: nome}, 
+        {$push: { paineisModificacao: painel}}
+    )
+    .exec()
+        .then(doc => {
+            console.log("Do banco de dados:", doc);
+            res.status(200).json(doc);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({error: err});
+        });
+})
+
+router.patch('/adicionarModificacao/:idProprietario/:nome/:nomePainel', (req, res) => {
+    const idProprietario = req.params.idProprietario;
+    const nome = req.params.nome; 
+    const nomePainel = req.params.nomePainel;
+    const modificacao = req.body;
+
+    Produto.findOne(
+        {idProprietario: idProprietario, nome: nome}, 
+    )
+    .exec()
+        .then(doc => {
+            console.log("Do banco de dados:", doc);
+
+            let paineis = doc.paineisModificacao;
+
+            for(i = 0; i < paineis.length; i++){
+                if(paineis[i].nome === nomePainel){
+                    paineis[i].modificacoes.push(modificacao);
+                    break;
+                }
+            }
+
+            doc.paineisModificacao = paineis;
+
+            doc
+                .save()
+                .then(result => {
+                    console.log(result);
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+
+            res.status(200).json(doc);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({error: err});
+        });
+})
 
 // UPDATE por id_proprietario e id produto
 router.patch('/alterar/:idProprietario/:id', (req, res) => {
