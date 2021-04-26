@@ -9,12 +9,7 @@ const EsquemaProduto = new mongoose.Schema({
   valor2: Number,
   valor3: Number,
   ativo: Boolean,
-  categorias: [
-    {
-      type: mongoose.Schema.Types.ObjectID,
-      ref: 'Categoria'
-    }
-  ],
+  categorias: [String],
   paineisModificacao: [
       {
         nome: String,
