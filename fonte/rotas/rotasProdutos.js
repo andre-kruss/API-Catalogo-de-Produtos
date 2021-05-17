@@ -65,6 +65,7 @@ router.post('/adicionar', (req, res) => {
         idProprietario: req.body.idProprietario,
         nome: req.body.nome,
         descricao: req.body.descricao,
+        linkImagem: req.body.linkImagem,
         valor1: req.body.valor1,
         valor2: req.body.valor2,
         valor3: req.body.valor3,

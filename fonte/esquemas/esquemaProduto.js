@@ -5,6 +5,7 @@ const EsquemaProduto = new mongoose.Schema({
   idProprietario: String,
   nome: String,
   descricao: String,
+  linkImagem: String,
   valor1: Number,
   valor2: Number,
   valor3: Number,
