@@ -113,7 +113,6 @@ router.delete('/deletar/:idProprietario/:id', (req, res) => {
 router.patch('/adicionarPainel/:idProprietario/:nome', (req, res) => {
     const idProprietario = req.params.idProprietario;
     const nome = req.params.nome; 
-    const idExterno = req.params.idExterno;
     const painel = req.body;
 
     Produto.updateOne(
