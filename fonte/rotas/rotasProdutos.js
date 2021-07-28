@@ -62,6 +62,7 @@ router.get('/listar/:idProprietario', (req, res) => {
 router.post('/adicionar', (req, res) => {
    const produto = new Produto({
         _id: mongoose.Types.ObjectId(),
+        idExterno: req.body.idExterno,
         idProprietario: req.body.idProprietario,
         nome: req.body.nome,
         descricao: req.body.descricao,
@@ -112,10 +113,11 @@ router.delete('/deletar/:idProprietario/:id', (req, res) => {
 router.patch('/adicionarPainel/:idProprietario/:nome', (req, res) => {
     const idProprietario = req.params.idProprietario;
     const nome = req.params.nome; 
+    const idExterno = req.params.idExterno;
     const painel = req.body;
 
     Produto.updateOne(
-        {idProprietario: idProprietario, nome: nome}, 
+        {idProprietario: idProprietario, nome: nome, idExterno: idExterno}, 
         {$push: { paineisModificacao: painel}}
     )
     .exec()
