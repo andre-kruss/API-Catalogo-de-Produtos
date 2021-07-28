@@ -32,3 +32,5 @@ app.use('/produtos', rotasProdutos);
 app.use('/categorias', rotasCategorias);
 
 module.exports = app;
+
+//teste
