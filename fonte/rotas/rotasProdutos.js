@@ -116,7 +116,7 @@ router.patch('/adicionarPainel/:idProprietario/:nome', (req, res) => {
     const painel = req.body;
 
     Produto.updateOne(
-        {idProprietario: idProprietario, nome: nome, idExterno: idExterno}, 
+        {idProprietario: idProprietario, nome: nome}, 
         {$push: { paineisModificacao: painel}}
     )
     .exec()
