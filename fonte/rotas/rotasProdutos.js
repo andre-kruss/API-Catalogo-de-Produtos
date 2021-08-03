@@ -62,6 +62,7 @@ router.get('/listar/:idProprietario', (req, res) => {
 router.post('/adicionar', (req, res) => {
    const produto = new Produto({
         _id: mongoose.Types.ObjectId(),
+        idExterno: req.body.idExterno,
         idProprietario: req.body.idProprietario,
         nome: req.body.nome,
         descricao: req.body.descricao,

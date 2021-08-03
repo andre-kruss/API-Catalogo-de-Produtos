@@ -65,6 +65,7 @@ router.post('/adicionar', (req, res) => {
     const categoria = new Categoria({
         _id: mongoose.Types.ObjectId(),
         idProprietario: req.body.idProprietario,
+        idExterno: req.body.idExterno,
         nome: req.body.nome
     });
 

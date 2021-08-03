@@ -3,6 +3,7 @@ mongoose = require('mongoose')
 const EsquemaProduto = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectID,
   idProprietario: String,
+  idExterno: String,
   nome: String,
   descricao: String,
   linkImagem: String,
@@ -13,11 +14,13 @@ const EsquemaProduto = new mongoose.Schema({
   categorias: [String],
   paineisModificacao: [
       {
+        idExterno: String,
         nome: String,
         min: Number,
         max: Number,
         modificacoes: [
             {
+              idExterno: String,
               nome: String,
               valor: Number
             }
